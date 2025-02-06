@@ -72,7 +72,20 @@ public class BookController {
         Optional<Book> bookOptional = bookRepository.findById(id);
         if (bookOptional.isPresent()) {
             Book book = bookOptional.get();
-            book.setBorrowed(!book.isBorrowed());
+            book.setBorrowed(true);
+            bookRepository.save(book);
+            return new ResponseEntity<>(book, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/{id}/return")
+    public ResponseEntity<Book> returnBook(@PathVariable Long id) {
+        Optional<Book> bookOptional = bookRepository.findById(id);
+        if (bookOptional.isPresent()) {
+            Book book = bookOptional.get();
+            book.setBorrowed(false);
             bookRepository.save(book);
             return new ResponseEntity<>(book, HttpStatus.OK);
         } else {
