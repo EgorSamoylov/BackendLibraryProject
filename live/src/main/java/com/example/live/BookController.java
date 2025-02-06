@@ -1,5 +1,6 @@
 package com.example.live;
 
+import java.lang.classfile.ClassFile;
 import java.util.List;
 import java.util.Optional;
 
@@ -64,5 +65,18 @@ public class BookController {
     public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
         bookRepository.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    } 
+    }
+    
+    @PutMapping("/{id}/borrow") 
+    public ResponseEntity<Book> borrowBook(@PathVariable Long id) {
+        Optional<Book> bookOptional = bookRepository.findById(id);
+        if (bookOptional.isPresent()) {
+            Book book = bookOptional.get();
+            book.setBorrowed(!book.isBorrowed());
+            bookRepository.save(book);
+            return new ResponseEntity<>(book, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
