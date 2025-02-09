@@ -77,11 +77,9 @@ cd frontend
 2. Установите зависимости:
 
 npm install axios
-или
-yarn install axios
+(или yarn install axios)
 
 3. Запустите приложение:
 
 npm run serve
-# или
-yarn serve
+(или yarn serve)
