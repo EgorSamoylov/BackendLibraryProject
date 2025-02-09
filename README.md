@@ -71,12 +71,13 @@ gradle clean build
 ### 3. Запуск Frontend (Vue.js)
 1. Перейдите в директорию frontend:
 
-cd frontend  # Или название вашей папки с фронтендом
+cd frontend  
+Или название вашей папки с фронтендом
 
 2. Установите зависимости:
 
 npm install axios
-# или
+или
 yarn install axios
 
 3. Запустите приложение:
